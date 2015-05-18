@@ -7,8 +7,18 @@
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function checkData(inputString) {
-	// your code goes here
+	if(typeof inputString !== 'string') {
+		throw "Invalid Input";
+	}
+	if (inputString.length === 3) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
+
+console.log(checkData('abc'));
 
 /*
  * PROBLEM `concatenateArrays`: (easy)
@@ -18,8 +28,10 @@ function checkData(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function concatenateArrays(a, b) {
-	// your code goes here
+	return a.concat(b);
 }
+
+console.log(concatenateArrays([1, 2, 3], [4, 5, 6]));
 
 /*
  * PROBLEM `fixProperNoun`: (easy)
@@ -31,8 +43,14 @@ function concatenateArrays(a, b) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function fixProperNoun(noun) {
-	// your code goes here
+	return noun.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
 }
+
+console.log(fixProperNoun("brave new world"));
+
+//http://alvinalexander.com/javascript/how-to-capitalize-each-word-javascript-string
 
 /*
  * PROBLEM `sortLetters`: (easy)
@@ -42,8 +60,14 @@ function fixProperNoun(noun) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function sortLetters(inputString) {
-	// your code goes here
+	var array = inputString.split('').sort();
+	var newString = array.join("");
+	return newString;
 }
+
+console.log(sortLetters("cherries and apples and bananas"));
+
+
 
 /*
  * PROBLEM `absVal`: (easy)
@@ -53,8 +77,11 @@ function sortLetters(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function absVal(integer) {
-	// your code goes here
+	var abs = integer * integer;
+	return Math.sqrt(abs);
 }
+
+console.log(absVal(-25));
 
 /*
  * PROBLEM `myMin`: (easy)
@@ -63,6 +90,22 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+// function myMin(x, y) {
+// 	return Math.min(x, y);
+// }
+
+function myMin(numArray) {
+	var min = numArray[0];
+	for (counter=0; counter<numArray.length; counter++){
+	    if (numArray[counter] < min) {
+	        min = numArray[counter];
+	   		}
+	   	}
+	return min;
+}
+
+console.log(myMin([-478, -56]));
 
 /*
  * PROBLEM `myMax`: (easy) - Actual Interview Question
@@ -73,6 +116,18 @@ function absVal(integer) {
  *
  * Insane mode: do this without using a for loop.
  */
+
+function myMax(numArray) {
+	var max = numArray[0];
+	for (counter=0; counter<numArray.length; counter++) {
+	    if (numArray[counter] > max) {
+	    	max = numArray[counter];
+	       }
+		}
+	return max;
+}
+
+console.log(myMax(numArray = [5, 6, 7, 8, 9.5, 9, 3, 4,]));
 
 /*
  * PROBLEM `getMonth`: (easy)
@@ -86,11 +141,39 @@ function absVal(integer) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+
+function getMonth(chooseMonth) {
+	var months = [
+	'January', 
+	'February', 
+	'March', 
+	'April', 
+	'May', 
+	'June', 
+	'July', 
+	'August', 
+	'September', 
+	'October', 
+	'November', 
+	'December'
+	];
+	return months[chooseMonth-1];
+}
+
+console.log(getMonth(2));
+
+
 /*
  * PROBLEM `randomElement`: (medium)
  * Create a function called `randomElement` that takes an array of values and
  * returns one randomly selected value from that array.
  */
+
+function randomElement(randArray) {
+	var rand1 = Math.floor(Math.random()*(randArray.length-1)); 
+	return randArray[rand1];
+}
+
 
 /*
  * PROBLEM `studentPairs`: (medium)
@@ -98,6 +181,37 @@ function absVal(integer) {
  * student names and returns an array of randomly selected pairs of students
  * (array of arrays).
  */
+var students = [
+	'January', 
+	'February', 
+	'March', 
+	'April', 
+	'May', 
+	'June', 
+	'July', 
+	'August', 
+	'September', 
+	'October', 
+	'November', 
+	'December'
+];
+
+function studentPairs() {
+	var result = [];
+	while(students.length >=2) {
+		var pair = [];
+		
+		var rand1 = Math.floor(Math.random()*(students.length)); 
+		pair.push(students.splice(rand1, 1)[0]);
+		
+		var rand2 = Math.floor(Math.random()*(students.length)); 
+		pair.push(students.splice(rand2, 1)[0]);
+		
+		result.push(pair);
+	}
+	return result;
+}
+console.log(studentPairs(students));
 
 /*
  * PROBLEM `sumSquares`: (medium)
@@ -107,6 +221,8 @@ function absVal(integer) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+
+
 /* 
  * PROBLEM `findMaxDiff`: (medium)
  * Given an array of integers, write a function called `findMaxDiff` that finds
@@ -114,6 +230,8 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+
 
 /*
  * PROBLEM `insertDashes`: (medium)
@@ -123,6 +241,8 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+
 
 /* 
  * PROBLEM `mySubstring`mySubstring: (medium)
@@ -136,6 +256,8 @@ function absVal(integer) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+
+
 /*
  * PROBLEM `splitSwap`: (medium)
  * Write a function called `splitSwap` that swaps two halves of a given array.
@@ -146,6 +268,8 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+
 
 /*
  * PROBLEM `smallMultiples`: (medium)
@@ -158,6 +282,8 @@ function absVal(integer) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+
+
 /* 
  * PROBLEM `rot13`: (hard)
  * Create a function called `rot13` that takes an unencrypted string and returns
@@ -166,6 +292,8 @@ function absVal(integer) {
  * The input should only contain lower-case alphabetic characters. If the input
  * is invalid throw an 'Invalid Input' exception.
  */
+
+
 
 /*
  * PROBLEM `derot13`: (hard)
@@ -176,6 +304,8 @@ function absVal(integer) {
  * is invalid throw an 'Invalid Input' exception.
  */
 
+
+
 /*
  * PROBLEM `rotn`: (hard)
  * Create a function called `rotn` that takes an unencrypted string and an
@@ -184,6 +314,8 @@ function absVal(integer) {
  * The input should only contain lower-case alphabetic characters. If the input
  * is invalid throw an 'Invalid Input' exception.
  */
+
+
 
 /*
  * PROBLEM `findBoth`: (hard)
@@ -194,6 +326,8 @@ function absVal(integer) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+
+
 /*
  * PROBLEM `countBoth`: (hard)
  * Write a function called `countBoth` that takes two arrays of integers a and 
@@ -202,6 +336,8 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+
 
 /* 
  * PROBLEM `isDiagonalMatrix`: (hard)
